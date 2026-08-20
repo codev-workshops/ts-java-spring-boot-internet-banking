@@ -20,8 +20,8 @@ directory.
 ## `ci.yml`
 
 Triggers: push to `main`/`master`, pull requests against them, manual dispatch.
-Concurrency cancels superseded PR runs. Default permissions are `contents: read`;
-only the dependency scan adds `security-events: write`.
+Concurrency cancels superseded PR runs. Permissions are `contents: read` for
+every job.
 
 | Job | What it does |
 | --- | --- |
@@ -30,7 +30,7 @@ only the dependency scan adds `security-events: write`.
 | `compose-validate` | `docker compose config --quiet` for `docker-compose.yml` and `docker-compose-support-apps.yml`. |
 | `dockerfile-lint` | `hadolint` (via container) over every `Dockerfile`, failing only on `error`-level findings. |
 | `workflow-lint` | `actionlint` over the workflow files. |
-| `dependency-scan` | Trivy filesystem scan (vuln + secret + misconfig, HIGH/CRITICAL), SARIF uploaded to code scanning and as an artifact. |
+| `dependency-scan` | Trivy filesystem scan (vuln + secret + misconfig, HIGH/CRITICAL) run from the `aquasec/trivy` image; findings go to the job summary and a SARIF artifact. Reported, not enforced. |
 | `ci-status` | `always()` aggregate gate — the single check to mark required in branch protection. Skipped jobs pass; failures and cancellations fail. |
 
 Testing notes:
