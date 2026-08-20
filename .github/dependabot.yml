@@ -153,7 +153,15 @@ updates:
       prefix: "build(docker)"
     labels: [dependencies, docker]
 
-  # --- Local MySQL image used by docker-compose ---------------------------
+  # --- Locally built images used by docker-compose ------------------------
+  - package-ecosystem: docker
+    directory: /docker-compose/keycloak
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: "build(docker)"
+    labels: [dependencies, docker]
+
   - package-ecosystem: docker
     directory: /docker-compose/mysql
     schedule:

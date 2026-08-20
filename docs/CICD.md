@@ -119,4 +119,4 @@ token is issued by the assumed role at run time.
 
 `.github/dependabot.yml` covers weekly updates for `github-actions`, `gradle`
 (one entry per module, Spring artifacts grouped), the seven service `docker`
-Dockerfiles, the compose MySQL image, and the `docker-compose` infra images.
+Dockerfiles, the locally built compose images (Keycloak, MySQL), and the `docker-compose` infra images.

@@ -61,7 +61,7 @@ except ImportError:
     sys.exit(0)
 list(yaml.safe_load_all(sys.stdin))
 print("    manifest is valid YAML")' <<< "$manifest" || true
-  sed 's/^/    | /' <<< "$manifest"
+  while IFS= read -r line; do printf '    | %s\n' "$line"; done <<< "$manifest"
 }
 
 case "$MODE" in
